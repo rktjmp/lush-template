@@ -45,6 +45,9 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
+-- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
+-- support an annotation like the following. Consult your server documentation.
+---@diagnostic disable: undefined-global
 local theme = lush(function()
   return {
     -- The following are all the Neovim default highlight groups from the docs

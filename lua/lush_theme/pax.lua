@@ -51,6 +51,26 @@ local hsl = lush.hsl
 local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 
+	-- transformers
+	local function dark(c)
+		return c.darken(5)
+	end
+	local function darker(c)
+		return c.darken(10)
+	end
+	local function darkest(c)
+		return c.darken(15)
+	end
+	local function light(c)
+		return c.lighten(5)
+	end
+	local function lighter(c)
+		return c.lighten(10)
+	end
+	local function lightest(c)
+		return c.lighten(15)
+	end
+
 	-- colour definitions
 	local farrowAndBall = {
 		romesco = hsl(2, 46, 50),
@@ -61,7 +81,7 @@ local theme = lush(function(injected_functions)
 	local custom = {
 		black = "#000000",
 		white = "#ffffff",
-		night = hsl(240, 0, 10),
+		night = hsl(240, 0, 7),
 		moon = hsl(51, 49, 83),
 	}
 	local accent = {}
@@ -75,7 +95,7 @@ local theme = lush(function(injected_functions)
 		ok = { bg = custom.night, fg = farrowAndBall.breakfastRoomGreen },
 	}
 
-	local blank = { bg = custom.black, fg = custom.white }
+	local blank = { fg = custom.white }
 	local hidden = { bg = custom.night, fg = custom.night }
 
 	return {
@@ -89,8 +109,8 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Normal(blank), -- Normal text
-		ColorColumn(blank), -- Columns set with 'colorcolumn'
+		Normal({ fg = custom.moon, bg = custom.night }), -- Normal text
+		ColorColumn({ bg = custom.night.lighten(5) }), -- Columns set with 'colorcolumn'
 		Conceal(blank), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor(blank), -- Character under the cursor
 		CurSearch(blank), -- Highlighting a search pattern under the cursor (see 'hlsearch')

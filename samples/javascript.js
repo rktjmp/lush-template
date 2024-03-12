@@ -3,7 +3,7 @@ import thingy from "some/other/path";
 console.log(thingy);
 
 // We are going to have some comments then
-let usSet = "up a bunche of variables";
+let usSet = "up a bunche of \n variables";
 const like = true;
 const arr = [];
 const a = { object_with: 123 };

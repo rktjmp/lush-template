@@ -72,33 +72,22 @@ local theme = lush(function(injected_functions)
 	end
 
 	-- colour definitions
-	-- F & B
-	local romesco = hsl(2, 46, 50)
-	local dutchOrange = hsl(34, 77, 58)
-	local breakfastRoomGreen = hsl(103, 13, 59)
-	local yonder = hsl(197, 30, 66)
-	-- Custom TODO remove the F&B colours for initial implementation
-	local error = hsl(2, 46, 50)
-	local warn = hsl(34, 77, 58)
-	local info = hsl(103, 13, 59)
-	local ok = hsl(197, 30, 66)
+	-- full saturation notifications
+	local red = hsl(0, 100, 50)
+	local orange = hsl(34, 100, 50)
+
+	-- shades
 	local white = hsl(0, 100, 100)
-	local night = hsl(0, 0, 11)
+	local black = hsl(0, 0, 11)
+
+	-- colours
 	local cream = hsl(51, 49, 80)
 	local gold = hsl(51, 70, 70)
 	local greenBlue = hsl(168, 53, 55)
 	local purple = hsl(300, 20, 62)
 	local mint = hsl(120, 20, 61)
 
-	-- role definitions
-	local status = {
-		error = { bg = night, fg = romesco },
-		warn = { bg = night, fg = dutchOrange },
-		info = { bg = night, fg = yonder },
-		hint = { bg = night, fg = yonder },
-		ok = { bg = night, fg = breakfastRoomGreen },
-	}
-
+	-- utils
 	local blank = { fg = white }
 
 	return {
@@ -112,14 +101,14 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Normal({ fg = cream, bg = night }), -- Normal text
-		ColorColumn({ bg = light(night) }), -- Columns set with 'colorcolumn'
+		Normal({ fg = cream, bg = black }), -- Normal text
+		ColorColumn({ bg = light(black) }), -- Columns set with 'colorcolumn'
 		Conceal({ Normal }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
 		CurSearch({ Normal, gui = "reverse" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		lCursor({ Cursor }), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM({ Cursor }), -- Like Cursor, but used when in IME mode |CursorIM|
-		CursorLine({ bg = light(night) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorLine({ bg = light(black) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 		CursorColumn({ CursorLine }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		Directory(blank), -- Directory names (and other special names in listings)
 		DiffAdd(blank), -- Diff mode: Added line |diff.txt|
@@ -249,11 +238,11 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		DiagnosticError(status.error), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticWarn(status.warn), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticInfo(status.info), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticHint(status.hint), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticOk(status.ok), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError({ fg = red }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn({ fg = orange }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticInfo({ fg = mint }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint({ fg = mint }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticOk({ fg = mint }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.

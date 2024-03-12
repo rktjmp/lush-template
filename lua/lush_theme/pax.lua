@@ -86,13 +86,17 @@ local theme = lush(function(injected_functions)
 	local gold = hsl(50, 70, 70)
 	local greenBlue = hsl(168, 50, 50)
 	local purple = hsl(300, 20, 60)
-	local mint = hsl(120, 20, 60)
+	local green = hsl(120, 20, 60)
 	local greyBlue = hsl(180, 43, 80)
 	local greyOrange = hsl(34, 43, 80)
 	local greyGreen = hsl(120, 43, 80)
 
+	-- accents
+	local pink = hsl(331, 100, 50)
+
 	-- utils
 	local blank = { fg = white }
+	local hidden = { fg = black, bg = black }
 
 	return {
 		-- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
@@ -107,45 +111,46 @@ local theme = lush(function(injected_functions)
 		--
 		Normal({ fg = cream, bg = black }), -- Normal text
 		ColorColumn({ bg = light(black) }), -- Columns set with 'colorcolumn'
-		Conceal({ Normal }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
+		Conceal(hidden), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
-		CurSearch({ Normal, gui = "reverse" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
+		CurSearch({ bg = white, fg = black }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		lCursor({ Cursor }), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM({ Cursor }), -- Like Cursor, but used when in IME mode |CursorIM|
 		CursorLine({ bg = light(black) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 		CursorColumn({ CursorLine }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		Directory(blank), -- Directory names (and other special names in listings)
+		Directory({ fg = greyBlue }), -- Directory names (and other special names in listings)
 		DiffAdd(blank), -- Diff mode: Added line |diff.txt|
 		DiffChange(blank), -- Diff mode: Changed line |diff.txt|
 		DiffDelete(blank), -- Diff mode: Deleted line |diff.txt|
 		DiffText(blank), -- Diff mode: Changed text within a changed line |diff.txt|
-		EndOfBuffer(blank), -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+		EndOfBuffer(hidden), -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 		TermCursor(blank), -- Cursor in a focused terminal
 		TermCursorNC(blank), -- Cursor in an unfocused terminal
-		ErrorMsg(blank), -- Error messages on the command line
+		ErrorMsg({ fg = red }), -- Error messages on the command line
 		VertSplit(blank), -- Column separating vertically split windows
 		Folded(blank), -- Line used for closed folds
 		FoldColumn(blank), -- 'foldcolumn'
-		SignColumn(blank), -- Column where |signs| are displayed
-		IncSearch(blank), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-		Substitute(blank), -- |:substitute| replacement text highlighting
-		LineNr(blank), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		SignColumn({ Normal }), -- Column where |signs| are displayed
+		IncSearch({ gui = "reverse" }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+		Substitute({ IncSearch }), -- |:substitute| replacement text highlighting
+		LineNr({ Normal }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove(blank), -- Line number for when the 'relativenumber' option is set, above the cursor line
 		LineNrBelow(blank), -- Line number for when the 'relativenumber' option is set, below the cursor line
-		CursorLineNr(blank), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		CursorLineNr({ bg = pink, fg = black }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		CursorLineFold(blank), -- Like FoldColumn when 'cursorline' is set for the cursor line
 		CursorLineSign(blank), -- Like SignColumn when 'cursorline' is set for the cursor line
-		MatchParen(blank), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-		ModeMsg(blank), -- 'showmode' message (e.g., "-- INSERT -- ")
-		MsgArea(blank), -- Area for messages and cmdline
+		MatchParen({ gui = "reverse" }), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+		ModeMsg({ Normal }), -- 'showmode' message (e.g., "-- INSERT -- ")
+		MsgArea({ Normal }), -- Area for messages and cmdline
 		MsgSeparator(blank), -- Separator for scrolled messages, `msgsep` flag of 'display'
 		MoreMsg(blank), -- |more-prompt|
 		NonText(blank), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		NormalFloat(blank), -- Normal text in floating windows.
-		FloatBorder(blank), -- Border of floating windows.
-		FloatTitle(blank), -- Title of floating windows.
-		NormalNC(blank), -- normal text in non-current windows
-		Pmenu(blank), -- Popup menu: Normal item.
+		NormalFloat({ Normal }), -- Normal text in floating windows.
+		FloatBorder({ Normal }), -- Border of floating windows.
+		FloatTitle({ Normal }), -- Title of floating windows.
+		NormalNC({ Normal }), -- normal text in non-current windows
+		-- TODO Pmenu
+		Pmenu({ Normal }), -- Popup menu: Normal item.
 		PmenuSel(blank), -- Popup menu: Selected item.
 		PmenuKind(blank), -- Popup menu: Normal item "kind"
 		PmenuKindSel(blank), -- Popup menu: Selected item "kind"
@@ -244,9 +249,9 @@ local theme = lush(function(injected_functions)
 		--
 		DiagnosticError({ fg = red }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticWarn({ fg = orange }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticInfo({ fg = mint }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticHint({ fg = mint }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticOk({ fg = mint }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticInfo({ fg = green }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint({ fg = green }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticOk({ fg = green }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.

@@ -80,12 +80,15 @@ local theme = lush(function(injected_functions)
 	local white = hsl(0, 100, 100)
 	local black = hsl(0, 0, 11)
 
-	-- colours
-	local cream = hsl(51, 49, 80)
-	local gold = hsl(51, 70, 70)
-	local greenBlue = hsl(168, 53, 55)
-	local purple = hsl(300, 20, 62)
-	local mint = hsl(120, 20, 61)
+	-- colors
+	local cream = hsl(50, 50, 90)
+	local gold = hsl(50, 70, 70)
+	local greenBlue = hsl(168, 50, 50)
+	local purple = hsl(300, 20, 60)
+	local mint = hsl(120, 20, 60)
+	local greyBlue = hsl(180, 43, 80)
+	local greyOrange = hsl(34, 43, 80)
+	local greyGreen = hsl(120, 43, 80)
 
 	-- utils
 	local blank = { fg = white }
@@ -182,12 +185,12 @@ local theme = lush(function(injected_functions)
 
 		Comment({ fg = white }), -- Any comment
 
-		Constant({ fg = mint }), -- (*) Any constant
-		-- String         { }, --   A string constant: "this is a string"
-		-- Character      { }, --   A character constant: 'c', '\n'
-		-- Number         { }, --   A number constant: 234, 0xff
+		Constant({ fg = greyBlue }), -- (*) Any constant
+		String({ fg = greyOrange }), --   A string constant: "this is a string"
+		Character({ String }), --   A character constant: 'c', '\n'
+		Number({ fg = greyGreen }), --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
-		-- Float          { }, --   A floating point constant: 2.3e10
+		Float({ Number }), --   A floating point constant: 2.3e10
 
 		Identifier({ fg = cream }), -- (*) Any variable name
 		Function({ fg = gold }), --   Function name (also: methods for classes)

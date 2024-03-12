@@ -59,6 +59,8 @@ local theme = lush(function(injected_functions)
 		yonder = hsl(197, 30, 66),
 	}
 	local custom = {
+		black = "#000000",
+		white = "#ffffff",
 		night = hsl(240, 0, 10),
 		moon = hsl(51, 49, 83),
 	}
@@ -73,7 +75,7 @@ local theme = lush(function(injected_functions)
 		ok = { bg = custom.night, fg = farrowAndBall.breakfastRoomGreen },
 	}
 
-	local blank = { bg = custom.night, fg = custom.moon }
+	local blank = { bg = custom.black, fg = custom.white }
 	local hidden = { bg = custom.night, fg = custom.night }
 
 	return {

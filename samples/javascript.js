@@ -10,6 +10,11 @@ const a = { object_with: 123 };
 
 const float = 123.456;
 
+// TODO - make this work
+// FIXME
+// XXX
+// Todo - something
+
 let result = float + a.object_with;
 
 const anItem = document.window.window.window;

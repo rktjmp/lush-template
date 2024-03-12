@@ -79,6 +79,7 @@ local theme = lush(function(injected_functions)
 	-- shades
 	local white = hsl(0, 100, 100)
 	local black = hsl(0, 0, 11)
+	local grey = hsl(0, 0, 80)
 
 	-- colors
 	local cream = hsl(50, 50, 90)
@@ -183,7 +184,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = white }), -- Any comment
+		Comment({ fg = grey }), -- Any comment
 
 		Constant({ fg = greyBlue }), -- (*) Any constant
 		String({ fg = greyOrange }), --   A string constant: "this is a string"
@@ -203,7 +204,7 @@ local theme = lush(function(injected_functions)
 		-- Keyword        { }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
-		PreProc(blank), -- (*) Generic Preprocessor
+		PreProc({ Statement }), -- (*) Generic Preprocessor
 		-- Include        { }, --   Preprocessor #include
 		-- Define         { }, --   Preprocessor #define
 		-- Macro          { }, --   Same as Define
@@ -214,7 +215,7 @@ local theme = lush(function(injected_functions)
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
 
-		Special(blank), -- (*) Any special symbol
+		Special({ gui = "bold" }), -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		-- Delimiter      { }, --   Character that needs attention

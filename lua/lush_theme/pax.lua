@@ -51,7 +51,7 @@ local hsl = lush.hsl
 local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 
-	-- colours
+	-- colour definitions
 	local farrowAndBall = {
 		romesco = hsl(2, 46, 50),
 		dutchOrange = hsl(34, 77, 58),
@@ -63,6 +63,8 @@ local theme = lush(function(injected_functions)
 		moon = hsl(51, 49, 83),
 	}
 	local accent = {}
+
+	-- role definitions
 	local status = {
 		error = { bg = custom.night, fg = farrowAndBall.romesco },
 		warn = { bg = custom.night, fg = farrowAndBall.dutchOrange },

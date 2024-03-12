@@ -109,14 +109,14 @@ local theme = lush(function(injected_functions)
 		-- See :h highlight-groups
 		--
 		Normal({ fg = custom.moon, bg = custom.night }), -- Normal text
-		ColorColumn({ bg = custom.night.lighten(5) }), -- Columns set with 'colorcolumn'
+		ColorColumn({ bg = light(custom.night) }), -- Columns set with 'colorcolumn'
 		Conceal({ Normal }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
-		Cursor({ bg = farrowAndBall.romesco }), -- Character under the cursor
-		CurSearch(blank), -- Highlighting a search pattern under the cursor (see 'hlsearch')
-		lCursor(blank), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-		CursorIM(blank), -- Like Cursor, but used when in IME mode |CursorIM|
-		CursorColumn(blank), -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		CursorLine(blank), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		Cursor({ Normal }), -- Character under the cursor
+		CurSearch({ Normal, gui = "reverse" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
+		lCursor({ Cursor }), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+		CursorIM({ Cursor }), -- Like Cursor, but used when in IME mode |CursorIM|
+		CursorLine({ bg = light(custom.night) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorColumn({ CursorLine }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		Directory(blank), -- Directory names (and other special names in listings)
 		DiffAdd(blank), -- Diff mode: Added line |diff.txt|
 		DiffChange(blank), -- Diff mode: Changed line |diff.txt|

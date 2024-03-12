@@ -56,6 +56,7 @@ local theme = lush(function(injected_functions)
 		romesco = hsl(2, 46, 50),
 		dutchOrange = hsl(34, 77, 58),
 		breakfastRoomGreen = hsl(103, 13, 59),
+		yonder = hsl(197, 30, 66),
 	}
 	local custom = {
 		night = hsl(240, 0, 10),
@@ -65,8 +66,8 @@ local theme = lush(function(injected_functions)
 	local status = {
 		error = { bg = custom.night, fg = farrowAndBall.romesco },
 		warn = { bg = custom.night, fg = farrowAndBall.dutchOrange },
-		info = { bg = custom.night, fg = custom.moon },
-		hint = { bg = custom.night, fg = custom.moon },
+		info = { bg = custom.night, fg = farrowAndBall.yonder },
+		hint = { bg = custom.night, fg = farrowAndBall.yonder },
 		ok = { bg = custom.night, fg = farrowAndBall.breakfastRoomGreen },
 	}
 
@@ -221,11 +222,11 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		-- DiagnosticError            { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticWarn             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError(status.error), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn(status.warn), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticInfo(status.info), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint(status.hint), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticOk(status.ok), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.

@@ -27,6 +27,8 @@ class MyClass {
   }
 }
 
+function myFunc() {}
+
 let aClassThing = new MyClass();
 aClassThing.mew();
 

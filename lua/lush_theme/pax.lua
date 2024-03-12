@@ -81,7 +81,7 @@ local theme = lush(function(injected_functions)
 	local custom = {
 		black = "#000000",
 		white = "#ffffff",
-		night = hsl(240, 0, 7),
+		night = hsl(240, 0, 9),
 		moon = hsl(51, 49, 83),
 	}
 	local accent = {}
@@ -96,7 +96,6 @@ local theme = lush(function(injected_functions)
 	}
 
 	local blank = { fg = custom.white }
-	local hidden = { bg = custom.night, fg = custom.night }
 
 	return {
 		-- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
@@ -111,8 +110,8 @@ local theme = lush(function(injected_functions)
 		--
 		Normal({ fg = custom.moon, bg = custom.night }), -- Normal text
 		ColorColumn({ bg = custom.night.lighten(5) }), -- Columns set with 'colorcolumn'
-		Conceal(blank), -- Placeholder characters substituted for concealed text (see 'conceallevel')
-		Cursor(blank), -- Character under the cursor
+		Conceal({ Normal }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
+		Cursor({ bg = farrowAndBall.romesco }), -- Character under the cursor
 		CurSearch(blank), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		lCursor(blank), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM(blank), -- Like Cursor, but used when in IME mode |CursorIM|

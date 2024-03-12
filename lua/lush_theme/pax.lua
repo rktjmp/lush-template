@@ -72,30 +72,36 @@ local theme = lush(function(injected_functions)
 	end
 
 	-- colour definitions
-	local farrowAndBall = {
-		romesco = hsl(2, 46, 50),
-		dutchOrange = hsl(34, 77, 58),
-		breakfastRoomGreen = hsl(103, 13, 59),
-		yonder = hsl(197, 30, 66),
-	}
-	local custom = {
-		black = "#000000",
-		white = "#ffffff",
-		night = hsl(240, 0, 9),
-		moon = hsl(51, 49, 83),
-	}
-	local accent = {}
+	-- F & B
+	local romesco = hsl(2, 46, 50)
+	local dutchOrange = hsl(34, 77, 58)
+	local breakfastRoomGreen = hsl(103, 13, 59)
+	local yonder = hsl(197, 30, 66)
+	local peaGreen = hsl(108, 13, 54)
+	local ultraMarineBlue = hsl(212, 28, 47)
+	-- Custom
+	local black = "#000000"
+	local white = "#ffffff"
+	local night = hsl(240, 0, 9)
+	local moon = hsl(51, 49, 83)
+	local plum = hsl(282, 37, 45)
+
+	-- derived definitions
+	local blue = ultraMarineBlue
+	local purple = plum
+	local green = peaGreen
+	local bright = moon
 
 	-- role definitions
 	local status = {
-		error = { bg = custom.night, fg = farrowAndBall.romesco },
-		warn = { bg = custom.night, fg = farrowAndBall.dutchOrange },
-		info = { bg = custom.night, fg = farrowAndBall.yonder },
-		hint = { bg = custom.night, fg = farrowAndBall.yonder },
-		ok = { bg = custom.night, fg = farrowAndBall.breakfastRoomGreen },
+		error = { bg = night, fg = romesco },
+		warn = { bg = night, fg = dutchOrange },
+		info = { bg = night, fg = yonder },
+		hint = { bg = night, fg = yonder },
+		ok = { bg = night, fg = breakfastRoomGreen },
 	}
 
-	local blank = { fg = custom.white }
+	local blank = { fg = white }
 
 	return {
 		-- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
@@ -108,14 +114,14 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Normal({ fg = custom.moon, bg = custom.night }), -- Normal text
-		ColorColumn({ bg = light(custom.night) }), -- Columns set with 'colorcolumn'
+		Normal({ fg = moon, bg = night }), -- Normal text
+		ColorColumn({ bg = light(night) }), -- Columns set with 'colorcolumn'
 		Conceal({ Normal }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
 		CurSearch({ Normal, gui = "reverse" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		lCursor({ Cursor }), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM({ Cursor }), -- Like Cursor, but used when in IME mode |CursorIM|
-		CursorLine({ bg = light(custom.night) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorLine({ bg = light(night) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 		CursorColumn({ CursorLine }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		Directory(blank), -- Directory names (and other special names in listings)
 		DiffAdd(blank), -- Diff mode: Added line |diff.txt|
@@ -187,7 +193,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment(blank), -- Any comment
+		Comment({ Normal }), -- Any comment
 
 		Constant(blank), -- (*) Any constant
 		-- String         { }, --   A string constant: "this is a string"

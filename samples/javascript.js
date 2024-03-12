@@ -12,7 +12,7 @@ const float = 123.456;
 
 let result = float + a.object_with;
 
-document.window.window.window;
+const anItem = document.window.window.window;
 
 if (arr === []) {
 }
@@ -27,8 +27,10 @@ class MyClass {
   }
 }
 
-function myFunc() {}
+function thisThingy() {}
 
+thisThingy(1, 2, 3, "hell");
+thisThingy();
 let aClassThing = new MyClass();
 aClassThing.mew();
 

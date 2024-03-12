@@ -77,20 +77,14 @@ local theme = lush(function(injected_functions)
 	local dutchOrange = hsl(34, 77, 58)
 	local breakfastRoomGreen = hsl(103, 13, 59)
 	local yonder = hsl(197, 30, 66)
-	local peaGreen = hsl(108, 13, 54)
-	local ultraMarineBlue = hsl(212, 28, 47)
 	-- Custom
-	local black = "#000000"
 	local white = "#ffffff"
 	local night = hsl(240, 0, 9)
-	local moon = hsl(51, 49, 83)
-	local plum = hsl(282, 37, 45)
-
-	-- derived definitions
-	local blue = ultraMarineBlue
-	local purple = plum
-	local green = peaGreen
-	local bright = moon
+	local cream = hsl(51, 49, 90)
+	local gold = hsl(51, 70, 60)
+	local blue = hsl(207, 60, 60)
+	local orange = hsl(34, 77, 58)
+	local green = hsl(168, 53, 55)
 
 	-- role definitions
 	local status = {
@@ -114,7 +108,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Normal({ fg = moon, bg = night }), -- Normal text
+		Normal({ fg = cream, bg = night }), -- Normal text
 		ColorColumn({ bg = light(night) }), -- Columns set with 'colorcolumn'
 		Conceal({ Normal }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
@@ -193,19 +187,19 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ Normal }), -- Any comment
+		Comment({ fg = white }), -- Any comment
 
-		Constant(blank), -- (*) Any constant
+		Constant({ fg = orange }), -- (*) Any constant
 		-- String         { }, --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
 		-- Number         { }, --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
-		Identifier(blank), -- (*) Any variable name
-		-- Function       { }, --   Function name (also: methods for classes)
+		Identifier({ fg = cream }), -- (*) Any variable name
+		Function({ fg = gold }), --   Function name (also: methods for classes)
 
-		Statement(blank), -- (*) Any statement
+		Statement({ fg = blue }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
@@ -219,7 +213,7 @@ local theme = lush(function(injected_functions)
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		Type(blank), -- (*) int, long, char, etc.
+		Type({ fg = green }), -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
@@ -261,11 +255,11 @@ local theme = lush(function(injected_functions)
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
 		-- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
 		-- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-		-- DiagnosticUnderlineError   { } , -- Used to underline "Error" diagnostics.
-		-- DiagnosticUnderlineWarn    { } , -- Used to underline "Warn" diagnostics.
-		-- DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
-		-- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
-		-- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
+		DiagnosticUnderlineError({ DiagnosticError }), -- Used to underline "Error" diagnostics.
+		DiagnosticUnderlineWarn({ DiagnosticWarn }), -- Used to underline "Warn" diagnostics.
+		DiagnosticUnderlineInfo({ DiagnosticInfo }), -- Used to underline "Info" diagnostics.
+		DiagnosticUnderlineHint({ DiagnosticHint }), -- Used to underline "Hint" diagnostics.
+		DiagnosticUnderlineOk({ DiagnosticOk }), -- Used to underline "Ok" diagnostics.
 		-- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
 		-- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
 		-- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.

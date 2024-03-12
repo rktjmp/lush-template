@@ -77,14 +77,18 @@ local theme = lush(function(injected_functions)
 	local dutchOrange = hsl(34, 77, 58)
 	local breakfastRoomGreen = hsl(103, 13, 59)
 	local yonder = hsl(197, 30, 66)
-	-- Custom
-	local white = "#ffffff"
-	local night = hsl(240, 0, 9)
-	local cream = hsl(51, 49, 90)
-	local gold = hsl(51, 70, 60)
-	local blue = hsl(207, 60, 60)
-	local orange = hsl(34, 77, 58)
-	local green = hsl(168, 53, 55)
+	-- Custom TODO remove the F&B colours for initial implementation
+	local error = hsl(2, 46, 50)
+	local warn = hsl(34, 77, 58)
+	local info = hsl(103, 13, 59)
+	local ok = hsl(197, 30, 66)
+	local white = hsl(0, 100, 100)
+	local night = hsl(0, 0, 11)
+	local cream = hsl(51, 49, 80)
+	local gold = hsl(51, 70, 70)
+	local greenBlue = hsl(168, 53, 55)
+	local purple = hsl(300, 20, 62)
+	local mint = hsl(120, 20, 61)
 
 	-- role definitions
 	local status = {
@@ -189,7 +193,7 @@ local theme = lush(function(injected_functions)
 
 		Comment({ fg = white }), -- Any comment
 
-		Constant({ fg = orange }), -- (*) Any constant
+		Constant({ fg = mint }), -- (*) Any constant
 		-- String         { }, --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
 		-- Number         { }, --   A number constant: 234, 0xff
@@ -199,7 +203,7 @@ local theme = lush(function(injected_functions)
 		Identifier({ fg = cream }), -- (*) Any variable name
 		Function({ fg = gold }), --   Function name (also: methods for classes)
 
-		Statement({ fg = blue }), -- (*) Any statement
+		Statement({ fg = purple }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
@@ -213,7 +217,7 @@ local theme = lush(function(injected_functions)
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		Type({ fg = green }), -- (*) int, long, char, etc.
+		Type({ fg = greenBlue }), -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef

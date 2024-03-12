@@ -222,10 +222,10 @@ local theme = lush(function(injected_functions)
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
 		-- Debug          { }, --   Debugging statements
 
-		Underlined(blank), -- Text that stands out, HTML links
-		Ignore(blank), -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-		Error(blank), -- Any erroneous construct
-		Todo(blank), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		Underlined({ Normal }), -- Text that stands out, HTML links
+		Ignore({ Normal }), -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+		Error({ Normal }), -- Any erroneous construct
+		Todo({ Normal }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 		-- These groups are for the native LSP client and diagnostic system. Some
 		-- other LSP clients may use these groups, or use their own. Consult your

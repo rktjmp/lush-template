@@ -65,19 +65,17 @@ local theme = lush(function(injected_functions)
 	local orange = hsl(34, 100, 50)
 
 	-- shades
-	local white = hsl(0, 0, 100)
+	local white = hsl(0, 0, 89)
 	local black = hsl(0, 0, 11)
-	local grey = hsl(0, 0, 80)
 
 	-- colors
-	local greenyBlue = hsl(180, 30, 60)
-	local purple = hsl(300, 20, 60)
-	local greyBlue = hsl(188, 43, 80)
-	local greyOrange = hsl(34, 44, 70)
-	local greyGreen = hsl(120, 43, 80)
+	local ocean = hsl(180, 20, 60)
+	local plum = hsl(300, 20, 60)
+	local sky = hsl(210, 50, 70)
+	local terracotta = hsl(0, 50, 70)
 
 	-- accents
-	local pink = hsl(331, 100, 50)
+	local hotPink = hsl(331, 100, 50)
 
 	-- utils
 	local blank = { fg = white }
@@ -94,7 +92,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Normal({ fg = greenyBlue, bg = black }), -- Normal text
+		Normal({ fg = white, bg = black }), -- Normal text
 		ColorColumn({ bg = light(black) }), -- Columns set with 'colorcolumn'
 		Conceal(hidden), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
@@ -103,7 +101,7 @@ local theme = lush(function(injected_functions)
 		CursorIM({ Cursor }), -- Like Cursor, but used when in IME mode |CursorIM|
 		CursorLine({ bg = light(black) }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 		CursorColumn({ CursorLine }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		Directory({ fg = greyBlue }), -- Directory names (and other special names in listings)
+		Directory({ fg = ocean }), -- Directory names (and other special names in listings)
 		DiffAdd(blank), -- Diff mode: Added line |diff.txt|
 		DiffChange(blank), -- Diff mode: Changed line |diff.txt|
 		DiffDelete(blank), -- Diff mode: Deleted line |diff.txt|
@@ -116,12 +114,12 @@ local theme = lush(function(injected_functions)
 		Folded(blank), -- Line used for closed folds
 		FoldColumn({ Normal }), -- 'foldcolumn'
 		SignColumn({ Normal }), -- Column where |signs| are displayed
-		IncSearch({ bg = pink, fg = black }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+		IncSearch({ bg = hotPink, fg = black }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		Substitute({ IncSearch }), -- |:substitute| replacement text highlighting
 		LineNr({ SignColumn, fg = black.lighten(25) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove(blank), -- Line number for when the 'relativenumber' option is set, above the cursor line
 		LineNrBelow(blank), -- Line number for when the 'relativenumber' option is set, below the cursor line
-		CursorLineNr({ CursorLine, fg = pink }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		CursorLineNr({ CursorLine, fg = hotPink }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		CursorLineFold(blank), -- Like FoldColumn when 'cursorline' is set for the cursor line
 		CursorLineSign({ CursorLineNr }), -- Like SignColumn when 'cursorline' is set for the cursor line
 		MatchParen({ gui = "reverse" }), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
@@ -136,7 +134,7 @@ local theme = lush(function(injected_functions)
 		NormalNC({ Normal }), -- normal text in non-current windows
 		-- TODO Pmenu
 		Pmenu({ bg = lightest(black) }), -- Popup menu: Normal item.
-		PmenuSel({ bg = pink, fg = black }), -- Popup menu: Selected item.
+		PmenuSel({ bg = hotPink, fg = black }), -- Popup menu: Selected item.
 		PmenuKind({ Pmenu, gui = "bold" }), -- Popup menu: Normal item "kind"
 		PmenuKindSel({ PmenuSel }), -- Popup menu: Selected item "kind"
 		PmenuExtra({ Pmenu }), -- Popup menu: Normal item "extra text"
@@ -157,7 +155,7 @@ local theme = lush(function(injected_functions)
 		TabLineFill({ Normal }), -- Tab pages line, where there are no labels
 		TabLineSel({ Normal }), -- Tab pages line, active tab page label
 		Title({ Normal }), -- Titles for output from ":set all", ":autocmd" etc.
-		Visual({ bg = lightest(black), fg = pink }), -- Visual mode selection
+		Visual({ bg = lightest(black), fg = hotPink }), -- Visual mode selection
 		VisualNOS({ Visual }), -- Visual mode selection when vim is "Not Owning the Selection".
 		WarningMsg({ fg = orange }), -- Warning messages
 		Whitespace({ Normal }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -176,17 +174,17 @@ local theme = lush(function(injected_functions)
 
 		Comment({ fg = black.lighten(50) }), -- Any comment
 
-		Constant({ fg = greyOrange }), -- (*) Any constant
+		Constant({ fg = terracotta }), -- (*) Any constant
 		-- String { }, --   A string constant: "this is a string"
 		-- Character { }, --   A character constant: 'c', '\n'
 		-- Number { }, --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
 		-- Float { }, --   A floating point constant: 2.3e10
 
-		Identifier({ fg = greenyBlue }), -- (*) Any variable name
+		Identifier({ fg = ocean }), -- (*) Any variable name
 		-- Function {} , --   Function name (also: methods for classes)
 
-		Statement({ fg = purple }), -- (*) Any statement
+		Statement({ fg = plum }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
@@ -200,7 +198,7 @@ local theme = lush(function(injected_functions)
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		Type({ fg = greyGreen }), -- (*) int, long, char, etc.
+		Type({ fg = sky }), -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
@@ -208,7 +206,7 @@ local theme = lush(function(injected_functions)
 		Special({ Normal }), -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
-		Delimiter({ fg = grey }), --   Character that needs attention
+		Delimiter({ fg = white }), --   Character that needs attention
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
 		-- Debug          { }, --   Debugging statements
 
@@ -228,15 +226,15 @@ local theme = lush(function(injected_functions)
 		LspReferenceWrite({ Normal }), -- Used for highlighting "write" references
 		LspCodeLens({ Normal }), -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
 		LspCodeLensSeparator({ Normal }), -- Used to color the seperator between two or more code lens.
-		LspSignatureActiveParameter({ bg = pink, fg = black }), -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+		LspSignatureActiveParameter({ bg = hotPink, fg = black }), -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
 		DiagnosticError({ fg = red }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticWarn({ fg = orange }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticInfo({ fg = grey }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticHint({ fg = grey }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticOk({ fg = greyGreen }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticInfo({ fg = white }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticHint({ fg = white }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticOk({ fg = sky }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
 		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.

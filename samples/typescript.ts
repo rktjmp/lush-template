@@ -21,6 +21,7 @@ const LIMIT = 20;
 // anchored to only match from the start of parts otherwise it'll show emoji suggestions whilst typing matrix IDs
 const EMOJI_REGEX = new RegExp("(" + EMOTICON_REGEX.source + "|(?:^|\\s):[+-\\w]*:?)$", "g");
 
+let thingy = 1235;
 const number = 12345;
 const string = "asdfasdfa"
 const boolean = true;

@@ -52,20 +52,8 @@ local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 
 	-- transformers
-	local function dark(c)
-		return c.darken(5)
-	end
-	local function darker(c)
-		return c.darken(10)
-	end
-	local function darkest(c)
-		return c.darken(15)
-	end
 	local function light(c)
 		return c.lighten(5)
-	end
-	local function lighter(c)
-		return c.lighten(10)
 	end
 	local function lightest(c)
 		return c.lighten(15)
@@ -78,15 +66,14 @@ local theme = lush(function(injected_functions)
 
 	-- shades
 	local white = hsl(0, 0, 100)
-	local black = hsl(0, 0, 12)
+	local black = hsl(0, 0, 11)
 	local grey = hsl(0, 0, 80)
 
 	-- colors
-	local cream = hsl(50, 50, 90)
-	local gold = hsl(50, 70, 70)
+	local main = hsl(180, 20, 60)
 	local purple = hsl(300, 20, 60)
 	local green = hsl(140, 38, 60)
-	local greyBlue = hsl(180, 43, 80)
+	local greyBlue = hsl(240, 43, 70)
 	local greyOrange = hsl(34, 43, 80)
 	local greyGreen = hsl(120, 43, 80)
 
@@ -108,7 +95,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Normal({ fg = cream, bg = black }), -- Normal text
+		Normal({ fg = main, bg = black }), -- Normal text
 		ColorColumn({ bg = light(black) }), -- Columns set with 'colorcolumn'
 		Conceal(hidden), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
@@ -132,7 +119,7 @@ local theme = lush(function(injected_functions)
 		SignColumn({ Normal }), -- Column where |signs| are displayed
 		IncSearch({ bg = pink, fg = black }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		Substitute({ IncSearch }), -- |:substitute| replacement text highlighting
-		LineNr({ SignColumn, fg = black.lighten(50) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNr({ SignColumn, fg = black.lighten(25) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove(blank), -- Line number for when the 'relativenumber' option is set, above the cursor line
 		LineNrBelow(blank), -- Line number for when the 'relativenumber' option is set, below the cursor line
 		CursorLineNr({ CursorLine, fg = pink }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -193,12 +180,12 @@ local theme = lush(function(injected_functions)
 		Constant({ fg = greyBlue }), -- (*) Any constant
 		String({ fg = greyOrange }), --   A string constant: "this is a string"
 		Character({ String }), --   A character constant: 'c', '\n'
-		Number({ fg = greyGreen }), --   A number constant: 234, 0xff
+		-- Number { }, --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
-		Float({ Number }), --   A floating point constant: 2.3e10
+		-- Float { }, --   A floating point constant: 2.3e10
 
-		Identifier({ fg = cream }), -- (*) Any variable name
-		Function({ fg = gold }), --   Function name (also: methods for classes)
+		Identifier({ fg = main }), -- (*) Any variable name
+		-- Function { }, --   Function name (also: methods for classes)
 
 		Statement({ fg = purple }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
@@ -256,21 +243,21 @@ local theme = lush(function(injected_functions)
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
 		-- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
 		-- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-		DiagnosticUnderlineError({ DiagnosticError, gui = "underline" }), -- Used to underline "Error" diagnostics.
-		DiagnosticUnderlineWarn({ DiagnosticWarn, gui = "underline" }), -- Used to underline "Warn" diagnostics.
-		DiagnosticUnderlineInfo({ DiagnosticInfo, gui = "underline" }), -- Used to underline "Info" diagnostics.
-		DiagnosticUnderlineHint({ DiagnosticHint, gui = "underline" }), -- Used to underline "Hint" diagnostics.
-		DiagnosticUnderlineOk({ DiagnosticOk, gui = "underline" }), -- Used to underline "Ok" diagnostics.
+		-- DiagnosticUnderlineError(), -- Used to underline "Error" diagnostics.
+		-- DiagnosticUnderlineWarn(), -- Used to underline "Warn" diagnostics.
+		-- DiagnosticUnderlineInfo(), -- Used to underline "Info" diagnostics.
+		-- DiagnosticUnderlineHint(), -- Used to underline "Hint" diagnostics.
+		-- DiagnosticUnderlineOk(), -- Used to underline "Ok" diagnostics.
 		-- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
 		-- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
 		-- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.
 		-- DiagnosticFloatingHint     { } , -- Used to color "Hint" diagnostic messages in diagnostics float.
 		-- DiagnosticFloatingOk       { } , -- Used to color "Ok" diagnostic messages in diagnostics float.
-		--DiagnosticSignError(), -- Used for "Error" signs in sign column.
-		--DiagnosticSignWarn(), -- Used for "Warn" signs in sign column.
-		--DiagnosticSignInfo(), -- Used for "Info" signs in sign column.
-		--DiagnosticSignHint(), -- Used for "Hint" signs in sign column.
-		--DiagnosticSignOk(), -- Used for "Ok" signs in sign column.
+		-- DiagnosticSignError(), -- Used for "Error" signs in sign column.
+		-- DiagnosticSignWarn(), -- Used for "Warn" signs in sign column.
+		-- DiagnosticSignInfo(), -- Used for "Info" signs in sign column.
+		-- DiagnosticSignHint(), -- Used for "Hint" signs in sign column.
+		-- DiagnosticSignOk(), -- Used for "Ok" signs in sign column.
 
 		-- Tree-Sitter syntax groups.
 		--

@@ -89,7 +89,6 @@ local theme = lush(function(injected_functions)
 	local greyBlue = hsl(180, 43, 80)
 	local greyOrange = hsl(34, 43, 80)
 	local greyGreen = hsl(120, 43, 80)
-	local greyPink = hsl(331, 43, 80)
 
 	-- accents
 	local pink = hsl(331, 100, 50)
@@ -130,15 +129,15 @@ local theme = lush(function(injected_functions)
 		VertSplit({ Normal }), -- Column separating vertically split windows
 		Folded(blank), -- Line used for closed folds
 		FoldColumn({ Normal }), -- 'foldcolumn'
-		SignColumn({ bg = light(black) }), -- Column where |signs| are displayed
+		SignColumn({ Normal }), -- Column where |signs| are displayed
 		IncSearch({ bg = pink, fg = black }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		Substitute({ IncSearch }), -- |:substitute| replacement text highlighting
-		LineNr({ SignColumn }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNr({ SignColumn, fg = black.lighten(50) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove(blank), -- Line number for when the 'relativenumber' option is set, above the cursor line
 		LineNrBelow(blank), -- Line number for when the 'relativenumber' option is set, below the cursor line
-		CursorLineNr({ bg = pink, fg = black }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		CursorLineNr({ CursorLine, fg = pink }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		CursorLineFold(blank), -- Like FoldColumn when 'cursorline' is set for the cursor line
-		CursorLineSign({ SignColumn }), -- Like SignColumn when 'cursorline' is set for the cursor line
+		CursorLineSign({ CursorLineNr }), -- Like SignColumn when 'cursorline' is set for the cursor line
 		MatchParen({ gui = "reverse" }), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg({ Normal }), -- 'showmode' message (e.g., "-- INSERT -- ")
 		MsgArea({ Normal }), -- Area for messages and cmdline
@@ -189,7 +188,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = darkest(white) }), -- Any comment
+		Comment({ fg = black.lighten(50) }), -- Any comment
 
 		Constant({ fg = greyBlue }), -- (*) Any constant
 		String({ fg = greyOrange }), --   A string constant: "this is a string"
@@ -267,11 +266,11 @@ local theme = lush(function(injected_functions)
 		-- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.
 		-- DiagnosticFloatingHint     { } , -- Used to color "Hint" diagnostic messages in diagnostics float.
 		-- DiagnosticFloatingOk       { } , -- Used to color "Ok" diagnostic messages in diagnostics float.
-		DiagnosticSignError({ DiagnosticError, bg = light(black) }), -- Used for "Error" signs in sign column.
-		DiagnosticSignWarn({ DiagnosticWarn, bg = light(black) }), -- Used for "Warn" signs in sign column.
-		DiagnosticSignInfo({ DiagnosticInfo, bg = light(black) }), -- Used for "Info" signs in sign column.
-		DiagnosticSignHint({ DiagnosticHint, bg = light(black) }), -- Used for "Hint" signs in sign column.
-		DiagnosticSignOk({ DiagnosticOk, bg = light(black) }), -- Used for "Ok" signs in sign column.
+		--DiagnosticSignError(), -- Used for "Error" signs in sign column.
+		--DiagnosticSignWarn(), -- Used for "Warn" signs in sign column.
+		--DiagnosticSignInfo(), -- Used for "Info" signs in sign column.
+		--DiagnosticSignHint(), -- Used for "Hint" signs in sign column.
+		--DiagnosticSignOk(), -- Used for "Ok" signs in sign column.
 
 		-- Tree-Sitter syntax groups.
 		--

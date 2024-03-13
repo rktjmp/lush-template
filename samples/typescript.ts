@@ -14,11 +14,22 @@ import { TimelineRenderingType } from "../contexts/RoomContext";
 import * as recent from "../emojipicker/recent";
 import { filterBoolean } from "../utils/arrays";
 
+const thing = require("thing")
 const LIMIT = 20;
 
 // Match for ascii-style ";-)" emoticons or ":wink:" shortcodes provided by emojibase
 // anchored to only match from the start of parts otherwise it'll show emoji suggestions whilst typing matrix IDs
 const EMOJI_REGEX = new RegExp("(" + EMOTICON_REGEX.source + "|(?:^|\\s):[+-\\w]*:?)$", "g");
+
+const number = 12345;
+const string = "asdfasdfa"
+const boolean = true;
+const array = [];
+const object = {
+    what: "about this",
+    and: /regexp/
+}
+    console.log(number, string, boolean, array, object)
 
 interface ISortedEmoji {
     emoji: Emoji;

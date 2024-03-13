@@ -77,16 +77,15 @@ local theme = lush(function(injected_functions)
 	local orange = hsl(34, 100, 50)
 
 	-- shades
-	local white = hsl(0, 100, 100)
-	local black = hsl(0, 0, 11)
+	local white = hsl(0, 0, 100)
+	local black = hsl(0, 0, 12)
 	local grey = hsl(0, 0, 80)
 
 	-- colors
 	local cream = hsl(50, 50, 90)
 	local gold = hsl(50, 70, 70)
-	local greenBlue = hsl(168, 50, 50)
 	local purple = hsl(300, 20, 60)
-	local green = hsl(120, 20, 60)
+	local green = hsl(140, 38, 60)
 	local greyBlue = hsl(180, 43, 80)
 	local greyOrange = hsl(34, 43, 80)
 	local greyGreen = hsl(120, 43, 80)
@@ -190,7 +189,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = grey }), -- Any comment
+		Comment({ fg = darkest(white) }), -- Any comment
 
 		Constant({ fg = greyBlue }), -- (*) Any constant
 		String({ fg = greyOrange }), --   A string constant: "this is a string"
@@ -216,12 +215,12 @@ local theme = lush(function(injected_functions)
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		Type({ fg = greenBlue }), -- (*) int, long, char, etc.
+		Type({ fg = green }), -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
 
-		Special({ gui = "bold" }), -- (*) Any special symbol
+		Special({ Normal }), -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		-- Delimiter      { }, --   Character that needs attention

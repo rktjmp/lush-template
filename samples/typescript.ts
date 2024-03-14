@@ -68,6 +68,8 @@ function colonsTrimmed(str: string): string {
     return str.replace(/^:(.*?):?$/, "$1");
 }
 
+const anItem = new EmojiPicker()
+
 export default class EmojiProvider extends AutocompleteProvider {
     public matcher: QueryMatcher<ISortedEmoji>;
     public nameMatcher: QueryMatcher<ISortedEmoji>;

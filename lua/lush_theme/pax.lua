@@ -73,6 +73,7 @@ local theme = lush(function(injected_functions)
 	local plum = hsl(300, 20, 60)
 	local sky = hsl(210, 50, 70)
 	local terracotta = hsl(0, 50, 70)
+	local gold = hsl(50, 40, 70)
 
 	-- accents
 	local hotPink = hsl(331, 100, 50)
@@ -182,7 +183,7 @@ local theme = lush(function(injected_functions)
 		-- Float { }, --   A floating point constant: 2.3e10
 
 		Identifier({ fg = ocean }), -- (*) Any variable name
-		-- Function {} , --   Function name (also: methods for classes)
+		Function({ fg = gold }), --   Function name (also: methods for classes)
 
 		Statement({ fg = plum }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.

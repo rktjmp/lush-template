@@ -42,3 +42,9 @@ let aClassThing = new MyClass();
 aClassThing.mew();
 
 export { result, float };
+
+function one(num1) {}
+const item = () => {};
+const thing = one;
+
+thing();

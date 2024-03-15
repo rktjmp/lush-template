@@ -11,10 +11,9 @@ const arr = [];
 const a = { object_with: 123 };
 
 const float = 123.456;
-
-// TODO - make this work
-// FIXME
-// XXX
+// TODO: - make this work
+// FIXME: 
+// XXX: 
 // Todo - something
 
 let result = float + a.object_with;
@@ -33,11 +32,19 @@ class MyClass {
   }
 }
 
+let _a = null,
+  b = undefined,
+  c = true,
+  d = false,
+  e = Infinity,
+  f = Math.PI;
+console.log(a, b, c, d, e, f);
 function thisThingy(num1, num2, num3, word) {}
 
 thisThingy;
 thisThingy(1, 2, 3, "hell");
 thisThingy();
+thisThingy(1),
 let aClassThing = new MyClass();
 aClassThing.mew();
 
@@ -48,3 +55,15 @@ const item = () => {};
 const thing = one;
 
 thing();
+
+const item = <div with="some attributes">and some content</div>;
+
+function Component({ id }) {
+  const hrefTextThing = `123466`;
+    
+    
+
+  return <a href={hrefTextthing}>innerText</a>;
+}
+
+const myThing = <Component id={"1234556"} />;

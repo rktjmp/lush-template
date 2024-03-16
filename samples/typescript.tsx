@@ -1,8 +1,13 @@
+import React from "react";
+
 type Props = {
   id: string;
   name: boolean;
   list: null;
 };
+
+let item = new String("howdy");
+Array.isArray([]);
 
 export default function Component({ id, name, list }: Props) {
   const [first, second, third] = list;

@@ -51,29 +51,35 @@ local hsl = lush.hsl
 local theme = lush(function(injected_functions)
 	local sym = injected_functions.sym
 
-	-- colour definitions
-	-- full saturation notifications
-	local red = hsl(0, 100, 50)
-	local orange = hsl(34, 100, 50)
-
 	-- shades
-	local bright = hsl(0, 0, 89)
-	local dark = hsl(0, 0, 11)
-	local dark_95 = dark.lighten(5)
-	local dark_90 = dark.lighten(10)
-	local dark_85 = dark.lighten(15)
-	local dark_75 = dark.lighten(25)
-	local dark_50 = dark.lighten(50)
+	local black = hsl(0, 0, 11)
+	local greyDarkest = black.lighten(5)
+	local greyDark = black.lighten(10)
+	local grey = black.lighten(15)
+	local greyLight = black.lighten(25)
+	local greyLightest = black.lighten(50)
 
 	-- colors
-	local mistySage = hsl(180, 20, 60)
+	-- errors and warnings
+	local red = hsl(0, 100, 50)
+	local orange = hsl(34, 100, 50)
+	-- background and contrast
+	local midnight = hsl(240, 11, 11)
+	local cream = hsl(50, 20, 89)
+	-- code and markup
+	local wasabi = hsl(180, 20, 60)
 	local lavender = hsl(300, 20, 60)
 	local sky = hsl(210, 50, 70)
 	local rose = hsl(0, 50, 70)
 	local wheat = hsl(50, 40, 70)
-
-	-- accents
+	-- accent
 	local hotPink = hsl(331, 100, 50)
+
+	-- roles
+	local error = red
+	local warn = orange
+	local dark = midnight
+	local bright = cream
 
 	-- utils
 	local blank = { fg = bright }
@@ -91,15 +97,15 @@ local theme = lush(function(injected_functions)
 		-- See :h highlight-groups
 		--
 		Normal({ fg = bright, bg = dark }), -- Normal text
-		ColorColumn({ bg = dark_95 }), -- Columns set with 'colorcolumn'
+		ColorColumn({ bg = greyDarkest }), -- Columns set with 'colorcolumn'
 		Conceal(hidden), -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ Normal }), -- Character under the cursor
 		CurSearch({ bg = hotPink, fg = dark }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		lCursor({ Cursor }), -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM({ Cursor }), -- Like Cursor, but used when in IME mode |CursorIM|
-		CursorLine({ bg = dark_95 }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorLine({ bg = greyDarkest }), -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 		CursorColumn({ CursorLine }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		Directory({ fg = mistySage }), -- Directory names (and other special names in listings)
+		Directory({ fg = wasabi }), -- Directory names (and other special names in listings)
 		DiffAdd(blank), -- Diff mode: Added line |diff.txt|
 		DiffChange(blank), -- Diff mode: Changed line |diff.txt|
 		DiffDelete(blank), -- Diff mode: Deleted line |diff.txt|
@@ -107,14 +113,14 @@ local theme = lush(function(injected_functions)
 		EndOfBuffer(hidden), -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 		TermCursor({ bg = hotPink }), -- Cursor in a focused terminal
 		TermCursorNC({ Normal, gui = "reverse" }), -- Cursor in an unfocused terminal
-		ErrorMsg({ fg = red }), -- Error messages on the command line
+		ErrorMsg({ fg = error }), -- Error messages on the command line
 		VertSplit({ Normal }), -- Column separating vertically split windows
 		Folded({ Normal }), -- Line used for closed folds
 		FoldColumn({ Normal }), -- 'foldcolumn'
 		SignColumn({ Normal }), -- Column where |signs| are displayed
 		IncSearch({ bg = bright, fg = dark }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		Substitute({ CurSearch }), -- |:substitute| replacement text highlighting
-		LineNr({ SignColumn, fg = dark_75 }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNr({ SignColumn, fg = greyLight }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove(blank), -- Line number for when the 'relativenumber' option is set, above the cursor line
 		LineNrBelow(blank), -- Line number for when the 'relativenumber' option is set, below the cursor line
 		CursorLineNr({ CursorLine, fg = hotPink }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -126,7 +132,7 @@ local theme = lush(function(injected_functions)
 		MsgSeparator({ Normal }), -- Separator for scrolled messages, `msgsep` flag of 'display'
 		MoreMsg({ Normal }), -- |more-prompt|
 		NonText({ Normal }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		NormalFloat({ fg = bright, bg = dark_90 }), -- Normal text in floating windows.
+		NormalFloat({ fg = bright, bg = greyDark }), -- Normal text in floating windows.
 		FloatBorder({ Normal }), -- Border of floating windows.
 		FloatTitle({ Normal }), -- Title of floating windows.
 		NormalNC({ Normal }), -- normal text in non-current windows
@@ -136,8 +142,8 @@ local theme = lush(function(injected_functions)
 		PmenuKindSel({ PmenuSel }), -- Popup menu: Selected item "kind"
 		PmenuExtra({ Pmenu }), -- Popup menu: Normal item "extra text"
 		PmenuExtraSel({ PmenuSel }), -- Popup menu: Selected item "extra text"
-		PmenuSbar({ bg = dark_85 }), -- Popup menu: Scrollbar.
-		PmenuThumb({ bg = dark_95 }), -- Popup menu: Thumb of the scrollbar.
+		PmenuSbar({ bg = grey }), -- Popup menu: Scrollbar.
+		PmenuThumb({ bg = greyDarkest }), -- Popup menu: Thumb of the scrollbar.
 		Question({ Normal }), -- |hit-enter| prompt and yes/no questions
 		QuickFixLine({ PmenuSel }), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		Search({ IncSearch }), -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
@@ -152,9 +158,9 @@ local theme = lush(function(injected_functions)
 		TabLineFill({ Normal }), -- Tab pages line, where there are no labels
 		TabLineSel({ Normal }), -- Tab pages line, active tab page label
 		Title({ Normal }), -- Titles for output from ":set all", ":autocmd" etc.
-		Visual({ bg = dark_85, fg = hotPink }), -- Visual mode selection
+		Visual({ bg = grey, fg = hotPink }), -- Visual mode selection
 		VisualNOS({ Visual }), -- Visual mode selection when vim is "Not Owning the Selection".
-		WarningMsg({ fg = orange }), -- Warning messages
+		WarningMsg({ fg = warn }), -- Warning messages
 		Whitespace({ Normal }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
 		Winseparator({ Normal }), -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
 		WildMenu({ PmenuSel }), -- Current match in 'wildmenu' completion
@@ -169,7 +175,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = dark_50 }), -- Any comment
+		Comment({ fg = greyLightest }), -- Any comment
 
 		Constant({ fg = rose }), -- (*) Any constant
 		-- String { }, --   A string constant: "this is a string"
@@ -178,7 +184,7 @@ local theme = lush(function(injected_functions)
 		-- Boolean        { }, --   A boolean constant: TRUE, false
 		-- Float { }, --   A floating point constant: 2.3e10
 
-		Identifier({ fg = mistySage }), -- (*) Any variable name
+		Identifier({ fg = wasabi }), -- (*) Any variable name
 		Function({ fg = wheat }), --   Function name (also: methods for classes)
 
 		Statement({ fg = lavender }), -- (*) Any statement
@@ -227,8 +233,8 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		DiagnosticError({ fg = red }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		DiagnosticWarn({ fg = orange }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError({ fg = error }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn({ fg = warn }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticInfo({ Comment }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticHint({ Comment }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		DiagnosticOk({ fg = sky }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
@@ -322,14 +328,14 @@ local theme = lush(function(injected_functions)
 		sym("@constant.builtin.javascript")({ Constant }), -- null/undefined
 		sym("@constructor.javascript")({ Function }), -- treat constructor as a method
 		sym("@tag.builtin.javascript")({ Type }), -- div/a/span etc.
-		sym("@tag.javascript")({ Function }), -- custom components
+		sym("@tag.javascript")({ Type }), -- custom components
 		sym("@none.javascript")({ Constant }), -- text inside tags
 
 		-- TS(X)
 		sym("@constant.builtin.tsx")({ Constant }), -- null/undefined
 		sym("@constructor.tsx")({ Function }), -- treat constructor as a method
 		sym("@tag.builtin.tsx")({ Type }), -- div/a/span etc.
-		sym("@tag.tsx")({ Function }), -- custom components
+		sym("@tag.tsx")({ Type }), -- custom components
 		sym("@none.tsx")({ Constant }), -- text inside tags
 	}
 end)

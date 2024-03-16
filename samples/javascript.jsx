@@ -37,7 +37,9 @@ let _a = null,
   c = true,
   d = false,
   e = Infinity,
-  f = Math.PI;
+  f = Math.PI,
+    g = NaN;
+
 console.log(a, b, c, d, e, f);
 function thisThingy(num1, num2, num3, word) {}
 
